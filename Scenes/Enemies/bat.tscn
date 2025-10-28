@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ipmhpitiavy0"]
 
 [ext_resource type="Script" uid="uid://dydd60m3wiia4" path="res://Scripts/Enemies/bat.gd" id="1_hlhrk"]
-[ext_resource type="Texture2D" uid="uid://bpxhb4t11k1h8" path="res://Resources/Images/Enemies/Bat.png" id="2_jiqd8"]
 [ext_resource type="Script" uid="uid://dbhlhods3p7dq" path="res://Scripts/Enemies/character_attributes.gd" id="3_b8w2u"]
+[ext_resource type="Texture2D" uid="uid://cf63ewwr2le1e" path="res://Resources/Images/Enemies/bat 2.png" id="3_jiqd8"]
 
 [sub_resource type="Resource" id="Resource_t7iyi"]
 script = ExtResource("3_b8w2u")
@@ -17,4 +17,4 @@ Sprite = NodePath("Sprite2D")
 character_attributes = SubResource("Resource_t7iyi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_jiqd8")
+texture = ExtResource("3_jiqd8")

@@ -6,8 +6,7 @@ class_name Map_1
 # Enemies
 var enemies = {
 	goblin = preload("res://Scenes/Enemies/goblin.tscn"),
-	bat = preload("res://Scenes/Enemies/bat.tscn"),
-	golem = preload("res://Scenes/Enemies/golem.tscn")
+	bat = preload("res://Scenes/Enemies/bat.tscn")
 }
 
 # Variables

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://ivsl80il7wcb"]
 
 [ext_resource type="Script" uid="uid://cg6wys7d5l0kl" path="res://Scripts/Enemies/goblin.gd" id="1_xm08b"]
-[ext_resource type="Texture2D" uid="uid://cfth50olv2stj" path="res://Resources/Images/Enemies/Goblin.png" id="2_xcvi8"]
 [ext_resource type="Script" uid="uid://dbhlhods3p7dq" path="res://Scripts/Enemies/character_attributes.gd" id="3_5ec5f"]
+[ext_resource type="Texture2D" uid="uid://dhjohu565vks2" path="res://Resources/Images/Enemies/Goblin 2.png" id="3_v3y8l"]
 
 [sub_resource type="Resource" id="Resource_5ec5f"]
 script = ExtResource("3_5ec5f")
@@ -17,4 +17,5 @@ Sprite = NodePath("Sprite2D")
 character_attributes = SubResource("Resource_5ec5f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_xcvi8")
+position = Vector2(-2.00001, -1.99999)
+texture = ExtResource("3_v3y8l")
