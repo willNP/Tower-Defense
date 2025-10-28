@@ -12,5 +12,5 @@ config_version=5
 
 config/name="TD"
 run/main_scene="uid://38rv2wi815l6"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
