@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://38rv2wi815l6"]
+
+[ext_resource type="Texture2D" uid="uid://cxtmsp7fdr7gk" path="res://Resources/Images/Maps/Mapa.png" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://15x74pthel1f" path="res://Scripts/Enemies/path_2d.gd" id="2_8gbba"]
+[ext_resource type="Script" uid="uid://dnm6053v72yab" path="res://Scripts/Resources/Maps/map1.gd" id="3_8gbba"]
+
+[sub_resource type="Curve2D" id="Curve2D_8gbba"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 489, -347, 0, 0, 0, 0, 490, -238, 0, 0, 0, 0, 403, -207, 0, 0, 0, 0, 334, -209, 0, 0, 0, 0, 162, -212, 0, 0, 0, 0, 15, -202, 0, 0, 0, 0, -159, -199, 0, 0, 0, 0, -283, -209, 0, 0, 0, 0, -405, -196, 0, 0, 0, 0, -489, -144, 0, 0, 0, 0, -502, -73, 0, 0, 0, 0, -417, -53, 0, 0, 0, 0, -193, -54, 0, 0, 0, 0, 65, -53, 0, 0, 0, 0, 408, -67, 0, 0, 0, 0, 501, -28, 0, 0, 0, 0, 471, 52, 0, 0, 0, 0, 365, 62, 0, 0, 0, 0, 9, 63, 0, 0, 0, 0, -288, 63, 0, 0, 0, 0, -428, 92, 0, 0, 0, 0, -458, 144, 0, 0, 0, 0, -388, 187, 0, 0, 0, 0, -199, 224, 0, 0, 0, 0, -22, 226, 0, 0, 0, 0, 123, 205, 0, 0, 0, 0, 278, 170, 0, 0, 0, 0, 447, 184, 0, 0, 0, 0, 468, 252, 0, 0, 0, 0, 474, 340)
+}
+point_count = 30
+
+[node name="Main" type="Node2D"]
+script = ExtResource("2_8gbba")
+
+[node name="map" type="Sprite2D" parent="."]
+position = Vector2(575, 325)
+texture = ExtResource("1_jjgbg")
+
+[node name="Path2D" type="Path2D" parent="map"]
+curve = SubResource("Curve2D_8gbba")
+script = ExtResource("3_8gbba")

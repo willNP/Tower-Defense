@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://ipmhpitiavy0"]
+
+[ext_resource type="Script" uid="uid://dydd60m3wiia4" path="res://Scripts/Enemies/bat.gd" id="1_hlhrk"]
+[ext_resource type="Texture2D" uid="uid://bpxhb4t11k1h8" path="res://Resources/Images/Enemies/Bat.png" id="2_jiqd8"]
+[ext_resource type="Script" uid="uid://dbhlhods3p7dq" path="res://Scripts/Enemies/character_attributes.gd" id="3_b8w2u"]
+
+[sub_resource type="Resource" id="Resource_t7iyi"]
+script = ExtResource("3_b8w2u")
+Health = 100.0
+Speed = 200.0
+Armor = 20.0
+metadata/_custom_type_script = "uid://dbhlhods3p7dq"
+
+[node name="Bat" type="Node2D" node_paths=PackedStringArray("Sprite")]
+script = ExtResource("1_hlhrk")
+Sprite = NodePath("Sprite2D")
+character_attributes = SubResource("Resource_t7iyi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_jiqd8")

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bye7383wymf7e"]
+
+[ext_resource type="Script" uid="uid://bskbufuaaxl01" path="res://Scripts/Enemies/golem.gd" id="1_dmx3f"]
+[ext_resource type="Texture2D" uid="uid://d4d2ldjnheigo" path="res://Resources/Images/Enemies/Golem.png" id="2_whxg7"]
+[ext_resource type="Script" uid="uid://dbhlhods3p7dq" path="res://Scripts/Enemies/character_attributes.gd" id="3_tjtiv"]
+
+[sub_resource type="Resource" id="Resource_s1ltc"]
+script = ExtResource("3_tjtiv")
+Health = 500.0
+Speed = 25.0
+Armor = 75.0
+metadata/_custom_type_script = "uid://dbhlhods3p7dq"
+
+[node name="Golem" type="Node2D" node_paths=PackedStringArray("Sprite")]
+script = ExtResource("1_dmx3f")
+Sprite = NodePath("Sprite2D")
+character_attributes = SubResource("Resource_s1ltc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_whxg7")
