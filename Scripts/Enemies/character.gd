@@ -11,7 +11,7 @@ var path : Path2D
 
 func _ready() -> void:
 	if Sprite:
-		Sprite.scale = Vector2(0.3, 0.3)
+		#Sprite.scale = Vector2(0.3, 0.3)
 		var size = Sprite.texture.get_size()
 		sprite.centered = true
 		#sprite.centered = false

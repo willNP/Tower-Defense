@@ -17,4 +17,7 @@ Sprite = NodePath("Sprite2D")
 character_attributes = SubResource("Resource_t7iyi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 17)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_jiqd8")
+offset = Vector2(-23.3333, -100)

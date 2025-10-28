@@ -18,4 +18,5 @@ character_attributes = SubResource("Resource_5ec5f")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-2.00001, -1.99999)
+scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_v3y8l")
