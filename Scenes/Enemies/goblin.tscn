@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ivsl80il7wcb"]
+[gd_scene load_steps=6 format=3 uid="uid://ivsl80il7wcb"]
 
 [ext_resource type="Script" uid="uid://cg6wys7d5l0kl" path="res://Scripts/Enemies/goblin.gd" id="1_xm08b"]
 [ext_resource type="Script" uid="uid://dbhlhods3p7dq" path="res://Scripts/Enemies/character_attributes.gd" id="3_5ec5f"]
@@ -11,6 +11,10 @@ Speed = 100.0
 Armor = 20.0
 metadata/_custom_type_script = "uid://dbhlhods3p7dq"
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ec5f"]
+radius = 14.0
+height = 64.0
+
 [node name="Goblin" type="Node2D" node_paths=PackedStringArray("Sprite")]
 script = ExtResource("1_xm08b")
 Sprite = NodePath("Sprite2D")
@@ -20,3 +24,9 @@ character_attributes = SubResource("Resource_5ec5f")
 position = Vector2(-2.00001, -1.99999)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_v3y8l")
+
+[node name="Area2D" type="Area2D" parent="." groups=["ENEMY"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2, -3)
+shape = SubResource("CapsuleShape2D_5ec5f")

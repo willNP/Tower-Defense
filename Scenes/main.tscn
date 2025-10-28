@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://38rv2wi815l6"]
+[gd_scene load_steps=6 format=3 uid="uid://38rv2wi815l6"]
 
 [ext_resource type="Texture2D" uid="uid://cxtmsp7fdr7gk" path="res://Resources/Images/Maps/Mapa.png" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://15x74pthel1f" path="res://Scripts/Enemies/path_2d.gd" id="2_8gbba"]
 [ext_resource type="Script" uid="uid://dnm6053v72yab" path="res://Scripts/Resources/Maps/map1.gd" id="3_8gbba"]
+[ext_resource type="PackedScene" uid="uid://d07fnoy7kbogk" path="res://Scenes/Towers/crossbow.tscn" id="4_jjvhh"]
 
 [sub_resource type="Curve2D" id="Curve2D_8gbba"]
 _data = {
@@ -20,3 +21,6 @@ texture = ExtResource("1_jjgbg")
 [node name="Path2D" type="Path2D" parent="map"]
 curve = SubResource("Curve2D_8gbba")
 script = ExtResource("3_8gbba")
+
+[node name="Crossbow" parent="." instance=ExtResource("4_jjvhh")]
+position = Vector2(233, 189)

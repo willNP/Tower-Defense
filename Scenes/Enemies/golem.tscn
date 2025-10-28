@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bye7383wymf7e"]
+[gd_scene load_steps=6 format=3 uid="uid://bye7383wymf7e"]
 
 [ext_resource type="Script" uid="uid://bskbufuaaxl01" path="res://Scripts/Enemies/golem.gd" id="1_dmx3f"]
 [ext_resource type="Texture2D" uid="uid://d4d2ldjnheigo" path="res://Resources/Images/Enemies/Golem.png" id="2_whxg7"]
@@ -11,6 +11,10 @@ Speed = 25.0
 Armor = 75.0
 metadata/_custom_type_script = "uid://dbhlhods3p7dq"
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_whxg7"]
+radius = 26.0
+height = 72.0
+
 [node name="Golem" type="Node2D" node_paths=PackedStringArray("Sprite")]
 script = ExtResource("1_dmx3f")
 Sprite = NodePath("Sprite2D")
@@ -19,3 +23,8 @@ character_attributes = SubResource("Resource_s1ltc")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
 texture = ExtResource("2_whxg7")
+
+[node name="Area2D" type="Area2D" parent="." groups=["ENEMY"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_whxg7")
