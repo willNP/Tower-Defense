@@ -1,6 +1,5 @@
-class_name MapManager
 extends Node2D
-
+class_name MapManager
 
 signal path_updated(curve: Curve2D, path_points: Array[Vector2])
 
@@ -33,6 +32,9 @@ var _tile_renderer: TileRenderer = TileRenderer.new()
 var _path_controller: PathController = PathController.new()
 var _map_data: MapData
 
+var grid: Array = []
+
+
 
 func _ready() -> void:
 	_map_generator.randomize()
@@ -44,11 +46,11 @@ func generate_map(seed: int = 0, use_seed: bool = false) -> void:
 	_configure_path_controller()
 	_map_generator.randomize(seed, use_seed)
 	_map_data = _map_generator.generate(map_width, map_height, _generator_params())
-
+	
 	if _map_data == null:
 		return
 
-	var grid: Array = _map_data.get_grid()
+	grid = _map_data.get_grid()
 	_tile_renderer.render(self, grid, tile_size, grass_texture, path_texture)
 
 	var path_points: Array[Vector2] = _map_data.get_path_points()
@@ -107,3 +109,4 @@ func _generator_params() -> Dictionary:
 		"start_center_columns": start_center_columns,
 		"start_center_band": start_center_band
 	}
+	

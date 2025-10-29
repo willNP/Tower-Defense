@@ -1,7 +1,5 @@
-extends Path2D
+extends Node2D
 class_name Map_1
-
-
 
 # Enemies
 var enemies = {
@@ -30,7 +28,8 @@ func _on_timer_timeout() -> void:
 		var keys = enemies.keys()
 		var random_key = keys[randi() % keys.size()]
 		var enemy_instance : Character = enemies[random_key].instantiate()
-
+		
+		
 		var path_follow = PathFollow2D.new()
 		path_follow.loop = false
 		path_follow.rotates = false
@@ -38,9 +37,10 @@ func _on_timer_timeout() -> void:
 		add_child(path_follow)
 
 		enemy_instance.pathFollow = path_follow
-		enemy_instance.path = self
-
+		enemy_instance.path = $MapGeneration.get_path_node()
+		print("enemy spawned")
 		count += 1
 	else: 
+		
 		print("Oleada terminada")
 		timer.queue_free()
