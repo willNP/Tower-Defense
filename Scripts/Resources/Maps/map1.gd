@@ -28,15 +28,12 @@ func _on_timer_timeout() -> void:
 		var keys = enemies.keys()
 		var random_key = keys[randi() % keys.size()]
 		var enemy_instance : Character = enemies[random_key].instantiate()
+		enemy_instance.init_path($MapGeneration.get_path_node())
 		
-		
-		var path_follow = PathFollow2D.new()
-		path_follow.loop = false
-		path_follow.rotates = false
-		path_follow.add_child(enemy_instance)
-		add_child(path_follow)
+		add_child(enemy_instance)
 
-		enemy_instance.pathFollow = path_follow
+		print("Path points count:", $MapGeneration.get_path_node().curve.get_point_count())
+
 		enemy_instance.path = $MapGeneration.get_path_node()
 		print("enemy spawned")
 		count += 1

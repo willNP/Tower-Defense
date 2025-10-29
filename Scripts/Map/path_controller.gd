@@ -5,9 +5,6 @@ extends RefCounted
 var parent: Node
 var tile_size: int = 64
 var path_node_name: String = "MobPath"
-var icon_texture: Texture2D
-var icon_scale: float = 0.3
-var show_debug_icon: bool = true
 var show_path: bool = true
 
 var _path_node: Path2D
@@ -17,9 +14,6 @@ func setup(parent_node: Node, config: Dictionary) -> void:
 	parent = parent_node
 	tile_size = config.get("tile_size", tile_size)
 	path_node_name = config.get("path_node_name", path_node_name)
-	icon_texture = config.get("icon_texture", icon_texture)
-	icon_scale = config.get("icon_scale", icon_scale)
-	show_debug_icon = config.get("show_debug_icon", show_debug_icon)
 	show_path = config.get("show_path", show_path)
 
 	_ensure_path_node()

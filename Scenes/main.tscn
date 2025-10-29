@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://38rv2wi815l6"]
+[gd_scene load_steps=4 format=3 uid="uid://38rv2wi815l6"]
 
+[ext_resource type="Script" uid="uid://dnm6053v72yab" path="res://Scripts/Resources/Maps/map1.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://c4i1pqi3f8xuh" path="res://Scenes/map_generation.tscn" id="2_bo1nx"]
 [ext_resource type="Script" uid="uid://ckqci71xhhp0w" path="res://Scripts/Towers/turret_spawner.gd" id="3_jjvhh"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_8gbba")
 
 [node name="MapGeneration" parent="." instance=ExtResource("2_bo1nx")]
 map_width = 30
