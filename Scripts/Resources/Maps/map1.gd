@@ -1,6 +1,7 @@
 extends Node2D
 class_name Map_1
 
+@export var enemy_spawn_number : float 
 # Enemies
 var enemies = {
 	goblin = preload("res://Scenes/Enemies/goblin.tscn"),
@@ -24,18 +25,16 @@ func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 
 func _on_timer_timeout() -> void:
-	if count < 20:
+	if count < enemy_spawn_number:
 		var keys = enemies.keys()
 		var random_key = keys[randi() % keys.size()]
 		var enemy_instance : Character = enemies[random_key].instantiate()
 		enemy_instance.init_path($MapGeneration.get_path_node())
 		
-		add_child(enemy_instance)
+		get_tree().root.add_child(enemy_instance)
 
-		print("Path points count:", $MapGeneration.get_path_node().curve.get_point_count())
 
 		enemy_instance.path = $MapGeneration.get_path_node()
-		print("enemy spawned")
 		count += 1
 	else: 
 		

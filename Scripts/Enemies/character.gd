@@ -9,7 +9,13 @@ var pathFollow : PathFollow2D
 var path : Path2D
 @onready var sprite : Sprite2D = $Sprite2D
 
+var health : float
+var armor : float
+
+
 func _ready() -> void:
+	health = character_attributes.Health
+	armor = character_attributes.Armor
 	if Sprite:
 		#Sprite.scale = Vector2(0.3, 0.3)
 		var size = Sprite.texture.get_size()
@@ -34,3 +40,11 @@ func _physics_process(delta: float) -> void:
 		if pathFollow.progress_ratio >= 1.0:
 			print("end travel")
 			pathFollow.queue_free()  # Elimina el contenedor
+
+func receive_dmg(dmg_taken : float) -> void:
+	var total_dmg = dmg_taken-armor
+	if health - total_dmg <= 0:
+		self.queue_free()
+	else:
+		health = total_dmg	
+	
