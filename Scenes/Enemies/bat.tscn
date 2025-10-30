@@ -25,7 +25,7 @@ scale = Vector2(0.3, 0.3)
 texture = ExtResource("3_jiqd8")
 offset = Vector2(-23.3333, -100)
 
-[node name="Area2D" type="Area2D" parent="." groups=["ENEMY"]]
+[node name="Area2D" type="Area2D" parent="." groups=["ENEMY", "Flying"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-2, -24)

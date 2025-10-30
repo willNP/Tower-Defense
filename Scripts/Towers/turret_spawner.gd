@@ -5,8 +5,8 @@ class_name TurretSpawner
 
 var turrets : Dictionary = {
 	
-	crossbow = preload("res://Scenes/Towers/Crossbow/crossbow.tscn"),
-	crossAmmo = preload("res://Scenes/Towers/Crossbow/crossbow_arrow.tscn")
+	cannon = preload("res://Scenes/Towers/Canon/Canon.tscn"),
+	CannonBall = preload("res://Scenes/Towers/Canon/cannon_ball.tscn")
 	
 }
 var tiles : Array
@@ -22,7 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if _is_tile_valid(tile_coords):
 			var tile_value = tiles[tile_coords.y][tile_coords.x]
 			if tile_value != 1:
-				var turret : Crossbow = turrets["crossbow"].instantiate()
+				var turret : Canon = turrets["cannon"].instantiate()
 				turret.global_position = mouse_pos
 				self.get_parent().add_child(turret)
 			else:

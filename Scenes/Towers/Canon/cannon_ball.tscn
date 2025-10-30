@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://ck0l7n64a76aq"]
+
+[ext_resource type="Script" uid="uid://cfvmiuqcq0m7i" path="res://Scripts/Towers/cannon_ball.gd" id="1_ingyg"]
+[ext_resource type="Texture2D" uid="uid://qq5yosk84trt" path="res://Resources/Images/Towers/Cannon/cannon ball.png" id="2_nni8m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qcshr"]
+radius = 19.104973
+
+[node name="CannonBall" type="Node2D"]
+script = ExtResource("1_ingyg")
+speed = 700.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_nni8m")
+offset = Vector2(3, 4)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qcshr")

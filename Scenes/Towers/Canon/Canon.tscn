@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://dywvj6bqfx2xw"]
+
+[ext_resource type="Script" uid="uid://cjy57cn1bojbu" path="res://Scripts/Towers/canon.gd" id="1_65xsc"]
+[ext_resource type="Texture2D" uid="uid://mclxncj6q1tb" path="res://Resources/Images/Towers/Cannon/cannon.png" id="2_q68aw"]
+[ext_resource type="Script" uid="uid://byaut15a6ymo2" path="res://Resources/Resource/Attributes/turret_attributes.gd" id="2_sug8n"]
+[ext_resource type="PackedScene" uid="uid://ck0l7n64a76aq" path="res://Scenes/Towers/Canon/cannon_ball.tscn" id="3_1t4vo"]
+
+[sub_resource type="Resource" id="Resource_1t4vo"]
+script = ExtResource("2_sug8n")
+attack_speed = 1.2
+crit_chance = 20.0
+metadata/_custom_type_script = "uid://byaut15a6ymo2"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q68aw"]
+radius = 203.0394
+
+[node name="Canon" type="Node2D" node_paths=PackedStringArray("area_2d")]
+script = ExtResource("1_65xsc")
+turretAttributes = SubResource("Resource_1t4vo")
+ammo_scene = ExtResource("3_1t4vo")
+area_2d = NodePath("Area2D")
+target_source = "Ground"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5707964
+texture = ExtResource("2_q68aw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_q68aw")

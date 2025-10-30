@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cexhuow7ajua3" path="res://Scripts/Towers/crossbow.gd" id="1_pjyai"]
 [ext_resource type="Texture2D" uid="uid://58e3wsrkswbe" path="res://Resources/Images/Towers/Crossbow/ballesta.png" id="1_xrbwm"]
-[ext_resource type="Script" uid="uid://byaut15a6ymo2" path="res://Resources/Resource/turret_attributes.gd" id="2_py7v2"]
+[ext_resource type="Script" uid="uid://byaut15a6ymo2" path="res://Resources/Resource/Attributes/turret_attributes.gd" id="2_py7v2"]
 
 [sub_resource type="Resource" id="Resource_l4eha"]
 script = ExtResource("2_py7v2")

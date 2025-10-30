@@ -1,6 +1,9 @@
-extends Ammo
-class_name CrossbowArrow
+extends Node2D
+class_name Ammo
 
+@export var speed : float
+@export var dmg : float
+var target : Character
 
 func _physics_process(delta: float) -> void:
 	if target:
@@ -10,16 +13,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		self.queue_free()	
 
-		
-
-func get_arrow_sprite() -> Sprite2D:
-	return $Sprite2D
-	
 func attack(_target : Character) -> void:
 	target = _target
-	
-	
-
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent() == target:
