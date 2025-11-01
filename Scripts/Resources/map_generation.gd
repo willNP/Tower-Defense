@@ -42,9 +42,9 @@ func _ready() -> void:
 	generate_map()
 
 
-func generate_map(seed: int = 0, use_seed: bool = false) -> void:
+func generate_map(_seed: int = 0, use_seed: bool = false) -> void:
 	_configure_path_controller()
-	_map_generator.randomize(seed, use_seed)
+	_map_generator.randomize(_seed, use_seed)
 	_map_data = _map_generator.generate(map_width, map_height, _generator_params())
 	
 	if _map_data == null:
@@ -59,8 +59,8 @@ func generate_map(seed: int = 0, use_seed: bool = false) -> void:
 	path_updated.emit(current_curve, path_points)
 
 
-func regenerate_with_seed(seed: int) -> void:
-	generate_map(seed, true)
+func regenerate_with_seed(_seed: int) -> void:
+	generate_map(_seed, true)
 
 
 func regenerate_random() -> void:

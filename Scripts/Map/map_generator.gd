@@ -5,9 +5,9 @@ extends RefCounted
 var _rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 
-func randomize(seed: int = 0, use_seed: bool = false) -> void:
+func randomize(_seed: int = 0, use_seed: bool = false) -> void:
 	if use_seed:
-		_rng.seed = seed
+		_rng.seed = _seed
 	else:
 		_rng.randomize()
 

@@ -18,7 +18,6 @@ func _ready() -> void:
 	armor = character_attributes.Armor
 	if Sprite:
 		#Sprite.scale = Vector2(0.3, 0.3)
-		var size = Sprite.texture.get_size()
 		sprite.centered = true
 		#sprite.centered = false
 		#sprite.offset = Vector2(size.x / 2, size.y)
@@ -26,12 +25,12 @@ func _ready() -> void:
 		print("Sprite o textura no están disponibles")
 
 
-func init_path(path : Path2D) -> void:
+func init_path(_path : Path2D) -> void:
 	pathFollow = PathFollow2D.new()
 	pathFollow.add_child(self)
 	pathFollow.loop = false
 	pathFollow.rotates = false
-	path.add_child(pathFollow)
+	_path.add_child(pathFollow)
 
 
 func _physics_process(delta: float) -> void:
