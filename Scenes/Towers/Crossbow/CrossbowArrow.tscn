@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://bl6ampfk0ubfo" path="res://Scripts/Towers/crossbow_arrow.gd" id="1_maf87"]
 [ext_resource type="Texture2D" uid="uid://rj0oqxi54nin" path="res://Resources/Images/Towers/Crossbow/flecha.png" id="2_wlumo"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lrirm"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wlumo"]
+height = 62.0
 
 [node name="CrossbowArrow" type="Node2D"]
 script = ExtResource("1_maf87")
@@ -20,5 +20,6 @@ texture = ExtResource("2_wlumo")
 position = Vector2(-7, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(32, 0)
-shape = SubResource("CircleShape2D_lrirm")
+position = Vector2(10, 0)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_wlumo")

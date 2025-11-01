@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dywvj6bqfx2xw"]
 
-[ext_resource type="Script" uid="uid://cjy57cn1bojbu" path="res://Scripts/Towers/canon.gd" id="1_65xsc"]
+[ext_resource type="Script" uid="uid://wx5qj1w45qiu" path="res://Scripts/Towers/tower.gd" id="1_1t4vo"]
 [ext_resource type="Texture2D" uid="uid://mclxncj6q1tb" path="res://Resources/Images/Towers/Cannon/cannon.png" id="2_q68aw"]
 [ext_resource type="Script" uid="uid://byaut15a6ymo2" path="res://Resources/Resource/Attributes/turret_attributes.gd" id="2_sug8n"]
 [ext_resource type="PackedScene" uid="uid://ck0l7n64a76aq" path="res://Scenes/Towers/Canon/cannon_ball.tscn" id="3_1t4vo"]
@@ -15,7 +15,7 @@ metadata/_custom_type_script = "uid://byaut15a6ymo2"
 radius = 203.0394
 
 [node name="Canon" type="Node2D" node_paths=PackedStringArray("area_2d")]
-script = ExtResource("1_65xsc")
+script = ExtResource("1_1t4vo")
 turretAttributes = SubResource("Resource_1t4vo")
 ammo_scene = ExtResource("3_1t4vo")
 area_2d = NodePath("Area2D")
