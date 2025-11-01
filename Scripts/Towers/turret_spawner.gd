@@ -4,10 +4,13 @@ class_name TurretSpawner
 @export var mapGen : MapManager = null
 
 var turrets : Dictionary = {
-	
 	cannon = preload("res://Scenes/Towers/Canon/Canon.tscn"),
-	CannonBall = preload("res://Scenes/Towers/Canon/cannon_ball.tscn")
-	
+	crossbow = preload("res://Scenes/Towers/Crossbow/Crossbow.tscn")
+}
+
+var ammo : Dictionary = {
+	cannonBall = preload("res://Scenes/Towers/Canon/cannon_ball.tscn"),
+	crossbowArrow = preload("res://Scenes/Towers/Crossbow/CrossbowArrow.tscn")
 }
 var tiles : Array
 
@@ -22,7 +25,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		if _is_tile_valid(tile_coords):
 			var tile_value = tiles[tile_coords.y][tile_coords.x]
 			if tile_value != 1:
-				var turret : Canon = turrets["cannon"].instantiate()
+				var turretKeys = turrets.keys()
+				var randomKey = turretKeys[randi() % turretKeys.size()]
+				var turret : Tower = turrets[randomKey].instantiate()
 				turret.global_position = mouse_pos
 				self.get_parent().add_child(turret)
 			else:

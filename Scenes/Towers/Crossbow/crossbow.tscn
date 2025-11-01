@@ -1,33 +1,31 @@
-[gd_scene load_steps=6 format=3 uid="uid://d07fnoy7kbogk"]
+[gd_scene load_steps=7 format=3 uid="uid://djqg2tb2vfo28"]
 
-[ext_resource type="Script" uid="uid://cexhuow7ajua3" path="res://Scripts/Towers/crossbow.gd" id="1_pjyai"]
-[ext_resource type="Texture2D" uid="uid://58e3wsrkswbe" path="res://Resources/Images/Towers/Crossbow/ballesta.png" id="1_xrbwm"]
-[ext_resource type="Script" uid="uid://byaut15a6ymo2" path="res://Resources/Resource/Attributes/turret_attributes.gd" id="2_py7v2"]
+[ext_resource type="Script" uid="uid://cexhuow7ajua3" path="res://Scripts/Towers/crossbow.gd" id="1_rywcq"]
+[ext_resource type="Script" uid="uid://byaut15a6ymo2" path="res://Resources/Resource/Attributes/turret_attributes.gd" id="2_gywgm"]
+[ext_resource type="PackedScene" uid="uid://wvnbnugivbuh" path="res://Scenes/Towers/Crossbow/CrossbowArrow.tscn" id="3_pmw17"]
+[ext_resource type="Texture2D" uid="uid://58e3wsrkswbe" path="res://Resources/Images/Towers/Crossbow/ballesta.png" id="3_s8xoi"]
 
-[sub_resource type="Resource" id="Resource_l4eha"]
-script = ExtResource("2_py7v2")
-attack_speed = 1.5
+[sub_resource type="Resource" id="Resource_pmw17"]
+script = ExtResource("2_gywgm")
+attack_speed = 0.5
+crit_chance = 10.0
 metadata/_custom_type_script = "uid://byaut15a6ymo2"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hiux4"]
-radius = 218.0367
+[sub_resource type="CircleShape2D" id="CircleShape2D_irtp1"]
+radius = 395.01138
 
-[node name="Crossbow" type="Node2D"]
-script = ExtResource("1_pjyai")
-turretAttributes = SubResource("Resource_l4eha")
+[node name="Crossbow" type="Node2D" node_paths=PackedStringArray("area_2d")]
+script = ExtResource("1_rywcq")
+turretAttributes = SubResource("Resource_pmw17")
+ammo_scene = ExtResource("3_pmw17")
+area_2d = NodePath("Area2D")
+target_source = "Flying"
 
-[node name="CrossbowSprite" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964
-texture = ExtResource("1_xrbwm")
+texture = ExtResource("3_s8xoi")
 
-[node name="RangeArea" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea"]
-shape = SubResource("CircleShape2D_hiux4")
-
-[node name="AttackSpeedTimer" type="Timer" parent="."]
-autostart = true
-
-[connection signal="area_entered" from="RangeArea" to="." method="_on_range_area_area_entered"]
-[connection signal="area_exited" from="RangeArea" to="." method="_on_range_area_area_exited"]
-[connection signal="timeout" from="AttackSpeedTimer" to="." method="_on_attack_speed_timer_timeout"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_irtp1")
