@@ -35,7 +35,7 @@ func _on_timer_timeout() -> void:
 		var enemy_instance : Character = enemies[random_key].instantiate()
 		enemy_instance.init_path($MapGeneration.get_path_node())
 		
-		get_tree().root.add_child(enemy_instance)
+		#get_tree().root.add_child(enemy_instance)
 
 
 		enemy_instance.path = $MapGeneration.get_path_node()

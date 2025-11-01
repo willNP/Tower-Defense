@@ -10,7 +10,7 @@ class_name Tower
 @onready var attackTimer : Timer
 
 var hasTarget : bool
-var targetList : Array[Character]
+var targetList : Array
 var currentTarget : Character
 
 func _ready() -> void:
@@ -20,9 +20,8 @@ func _ready() -> void:
 	attackTimer.wait_time = turretAttributes.attack_speed
 	area_2d.area_entered.connect(_on_range_area_area_entered)
 	area_2d.area_exited.connect(_on_range_area_area_exited)
-	add_child(area_2d)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if hasTarget:
 		if attackTimer.is_stopped():
 			attackTimer.start()
@@ -73,4 +72,6 @@ func disparar() -> void:
 		var ammo = ammo_scene.instantiate()
 		ammo.global_position = global_position  # desde el centro de la ballesta
 		ammo.attack(currentTarget)
-		get_tree().root.add_child(ammo)
+		get_parent().call_deferred("add_child", ammo)
+
+		
