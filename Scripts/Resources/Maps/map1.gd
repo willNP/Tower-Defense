@@ -12,6 +12,7 @@ var enemies = {
 # Variables
 var timer : Timer
 var count : int = 0
+var _turret_spawner: TurretSpawner
 
 func _ready() -> void:
 	# Crear el Timer
@@ -23,6 +24,9 @@ func _ready() -> void:
 
 	# Conectar la señal timeout
 	timer.timeout.connect(_on_timer_timeout)
+
+	_turret_spawner = $TurretSpawner
+	_setup_turret_buttons()
 
 func _on_timer_timeout() -> void:
 	if count < enemy_spawn_number:
@@ -40,3 +44,29 @@ func _on_timer_timeout() -> void:
 		
 		print("Oleada terminada")
 		timer.queue_free()
+
+
+func _setup_turret_buttons() -> void:
+	if not has_node("UI/Control/Panel/Buttons"):
+		return
+
+	var cannon_button: Button = $UI/Control/Panel/Buttons/canon
+	var crossbow_button: Button = $UI/Control/Panel/Buttons/crossbow
+
+	cannon_button.toggled.connect(func(pressed: bool) -> void:
+		if pressed:
+			_select_turret("cannon")
+	)
+	crossbow_button.toggled.connect(func(pressed: bool) -> void:
+		if pressed:
+			_select_turret("crossbow")
+	)
+
+	if cannon_button.toggle_mode:
+		cannon_button.button_pressed = true
+	_select_turret("cannon")
+
+
+func _select_turret(turret_name: StringName) -> void:
+	if _turret_spawner:
+		_turret_spawner.set_selected_turret(turret_name)

@@ -8,6 +8,7 @@ signal path_updated(curve: Curve2D, path_points: Array[Vector2])
 @export var tile_size: int = 64
 @export var map_width: int = 39
 @export var map_height: int = 24
+@export var auto_fit_to_viewport: bool = true
 
 @export_group("Path Shape")
 @export var max_horizontal_steps: int = 3
@@ -42,9 +43,10 @@ func _ready() -> void:
 	generate_map()
 
 
-func generate_map(_seed: int = 0, use_seed: bool = false) -> void:
+func generate_map(seed: int = 0, use_seed: bool = false) -> void:
+	_update_dimensions_from_viewport()
 	_configure_path_controller()
-	_map_generator.randomize(_seed, use_seed)
+	_map_generator.randomize(seed, use_seed)
 	_map_data = _map_generator.generate(map_width, map_height, _generator_params())
 	
 	if _map_data == null:
@@ -109,4 +111,13 @@ func _generator_params() -> Dictionary:
 		"start_center_columns": start_center_columns,
 		"start_center_band": start_center_band
 	}
+
+
+func _update_dimensions_from_viewport() -> void:
+	if not auto_fit_to_viewport:
+		return
+
+	var viewport_size: Vector2i = get_viewport_rect().size
+	map_width = max(1, int(ceil(viewport_size.x / float(tile_size))))
+	map_height = max(1, int(ceil(viewport_size.y / float(tile_size))))
 	
