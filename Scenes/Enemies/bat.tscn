@@ -6,9 +6,8 @@
 
 [sub_resource type="Resource" id="Resource_t7iyi"]
 script = ExtResource("3_b8w2u")
-Health = 100.0
-Speed = 150.0
-Armor = 20.0
+health = 50.0
+speed = 200.0
 metadata/_custom_type_script = "uid://dbhlhods3p7dq"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jiqd8"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dpxbcsucxp3wr"]
+[gd_scene load_steps=7 format=3 uid="uid://ddyw74v600yai"]
 
 [ext_resource type="Script" uid="uid://wx5qj1w45qiu" path="res://Scripts/Towers/tower.gd" id="1_s8xoi"]
 [ext_resource type="Script" uid="uid://byaut15a6ymo2" path="res://Resources/Resource/Attributes/turret_attributes.gd" id="2_gywgm"]
@@ -19,7 +19,6 @@ script = ExtResource("1_s8xoi")
 turretAttributes = SubResource("Resource_pmw17")
 ammo_scene = ExtResource("3_pmw17")
 area_2d = NodePath("Area2D")
-target_source = "Flying"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964

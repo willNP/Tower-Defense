@@ -18,5 +18,7 @@ func attack(_target : Character) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent() == target:
-		self.queue_free()
 		target.receive_dmg(dmg)
+		var poison : Status_Effect_Resource = load("res://Scripts/Status Effects/poison_effect.tres")
+		poison.apply_effect(target)
+		self.queue_free()

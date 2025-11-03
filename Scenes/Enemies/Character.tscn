@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3sj8hqtuon07"]
+[gd_scene load_steps=3 format=3 uid="uid://b3sj8hqtuon07"]
 
 [ext_resource type="Script" uid="uid://cul1w3quioj78" path="res://Scripts/Enemies/character.gd" id="1_4ccjn"]
+[ext_resource type="Script" uid="uid://cpf6s674dcdub" path="res://Scripts/Enemies/character_status_effects.gd" id="2_jrqgw"]
 
 [node name="Character" type="Node2D" groups=["ENEMY"]]
 script = ExtResource("1_4ccjn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Character_Status_Effects" type="Node2D" parent="."]
+script = ExtResource("2_jrqgw")
+metadata/_custom_type_script = "uid://cpf6s674dcdub"
