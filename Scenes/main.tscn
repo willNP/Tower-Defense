@@ -10,7 +10,6 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
-enemy_spawn_number = 1
 
 [node name="MapGeneration" parent="." instance=ExtResource("2_bo1nx")]
 map_width = 30
@@ -48,7 +47,8 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="Buttons" type="HBoxContainer" parent="UI/Control/Panel"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 20.0
@@ -57,6 +57,7 @@ offset_right = -20.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 20
 alignment = 1
 
 [node name="canon" type="Button" parent="UI/Control/Panel/Buttons"]
@@ -73,3 +74,47 @@ size_flags_vertical = 4
 toggle_mode = true
 button_group = SubResource("ButtonGroup_um5mv")
 icon = ExtResource("5_21xkr")
+
+[node name="GoldInfo" type="Label" parent="UI/Control/Panel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -204.0
+offset_right = -29.0
+offset_bottom = -165.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 28
+text = "Oro: 0"
+horizontal_alignment = 1
+
+[node name="WaveInfo" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 20.0
+offset_right = 220.0
+offset_bottom = 70.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 48
+text = "Oleada 1"
+horizontal_alignment = 1
+
+[node name="EnemiesInfo" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -311.0
+offset_top = 29.0
+offset_right = -36.0
+offset_bottom = 69.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 26
+text = "Enemigos restantes: 0"
+horizontal_alignment = 2
