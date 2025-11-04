@@ -1,27 +1,11 @@
-[gd_resource type="Resource" script_class="Status_Effect_Resource" load_steps=3 format=3 uid="uid://cquakgnrfdcoa"]
+[gd_resource type="Resource" script_class="Poison_Effect" load_steps=3 format=3 uid="uid://cquakgnrfdcoa"]
 
-[ext_resource type="Script" uid="uid://cflyr6jjqs5wi" path="res://Scripts/Status Effects/status_effect.gd" id="1_sk483"]
-
-[sub_resource type="Shader" id="Shader_sk483"]
-code = "shader_type canvas_item;
-
-uniform float time; // tiempo en segundos desde que se aplicó el efecto
-
-void fragment() {
-    vec4 tex_color = texture(TEXTURE, UV);
-
-    // Oscila entre 0 y 1 cada segundo
-    float pulse = abs(sin(time * 3.14159)); // 3.14159 ≈ π → 1 ciclo por segundo
-
-    // Aplica tinte verde con intensidad variable
-    vec3 green_tint = vec3(0.0, 1.0, 0.0);
-    COLOR = vec4(mix(tex_color.rgb, green_tint, pulse * 0.5), tex_color.a);
-}
-"
+[ext_resource type="Script" uid="uid://d4aojx4vqnlsn" path="res://Scripts/Status Effects/poison_effect.gd" id="1_sk483"]
+[ext_resource type="Shader" uid="uid://nwe0hvw2fb4k" path="res://Scripts/Status Effects/Shaders/poison_shader.gdshader" id="2_31biw"]
 
 [resource]
 script = ExtResource("1_sk483")
+healt_modifier = -13.0
 status_name = "Poison"
 status_duration = 3.0
-health_change = -15.0
-shader = SubResource("Shader_sk483")
+shader = ExtResource("2_31biw")
