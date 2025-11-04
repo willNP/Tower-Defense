@@ -14,10 +14,12 @@ var ammo : Dictionary = {
 }
 var tiles : Array
 var selected_turret: StringName = "cannon"
+var _map_controller: Map_1
 
 func _ready() -> void:
 	if mapGen:
 		tiles = mapGen.grid
+	_map_controller = get_parent() as Map_1
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -30,6 +32,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			var tile_value = tiles[tile_coords.y][tile_coords.x]
 			if tile_value != 1:
 				if not turrets.has(selected_turret):
+					return
+				if _map_controller == null:
+					return
+				if not _map_controller.try_purchase_turret(selected_turret):
 					return
 				var turret_scene: PackedScene = turrets[selected_turret]
 				var turret : Tower = turret_scene.instantiate()
