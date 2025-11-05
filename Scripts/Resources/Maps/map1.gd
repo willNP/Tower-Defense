@@ -2,7 +2,7 @@ extends Node2D
 class_name Map_1
 
 @export var enemy_spawn_number : int = 10
-@export var starting_gold: int = 10000
+@export var starting_gold: int = 9999
 # Enemies
 var enemies = {
 	goblin = preload("res://Scenes/Enemies/goblin.tscn"),
@@ -37,6 +37,9 @@ var _spawn_index: int = 0
 var _spawned_this_wave: int = 0
 var _enemies_alive: int = 0
 var _gold: int = 0
+var _current_selected_turret: StringName = ""
+var _cannon_button: Button
+var _crossbow_button: Button
 
 var _wave_label: Label
 var _enemies_label: Label
@@ -57,6 +60,7 @@ func _ready() -> void:
 
 	_turret_spawner = $TurretSpawner
 	_setup_turret_buttons()
+	_update_turret_button_state("")
 
 	_wave_label = _get_label(WAVE_INFO_PATH)
 	_enemies_label = _get_label(ENEMIES_INFO_PATH)
@@ -100,25 +104,41 @@ func _setup_turret_buttons() -> void:
 	if not has_node(buttons_path):
 		return
 
-	var cannon_button: Button = $UI/Control/Panel/Buttons/canon
-	var crossbow_button: Button = $UI/Control/Panel/Buttons/crossbow
+	_cannon_button = $UI/Control/Panel/Buttons/canon
+	_crossbow_button = $UI/Control/Panel/Buttons/crossbow
 
-	cannon_button.toggled.connect(func(pressed: bool) -> void:
+	_cannon_button.toggled.connect(func(pressed: bool) -> void:
 		if pressed:
 			_select_turret("cannon")
 	)
-	crossbow_button.toggled.connect(func(pressed: bool) -> void:
+	_crossbow_button.toggled.connect(func(pressed: bool) -> void:
 		if pressed:
 			_select_turret("crossbow")
 	)
 
-	if cannon_button.toggle_mode:
-		cannon_button.button_pressed = true
-	_select_turret("cannon")
+	_select_turret("")
 
 func _select_turret(turret_name: StringName) -> void:
 	if _turret_spawner:
 		_turret_spawner.set_selected_turret(turret_name)
+
+func on_turret_selection_changed(turret_name: StringName) -> void:
+	_current_selected_turret = turret_name
+	_update_turret_button_state(turret_name)
+
+func _update_turret_button_state(turret_name: StringName) -> void:
+	var cannon_pressed := turret_name == "cannon"
+	var crossbow_pressed := turret_name == "crossbow"
+	_set_button_state(_cannon_button, cannon_pressed)
+	_set_button_state(_crossbow_button, crossbow_pressed)
+
+func _set_button_state(button: Button, pressed: bool) -> void:
+	if button == null:
+		return
+	if button.has_method("set_pressed_no_signal"):
+		button.set_pressed_no_signal(pressed)
+	else:
+		button.button_pressed = pressed
 
 func _prepare_wave() -> void:
 	timer.stop()
