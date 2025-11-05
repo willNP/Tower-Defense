@@ -10,6 +10,8 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_8gbba")
+enemy_spawn_number = null
+starting_gold = null
 
 [node name="MapGeneration" parent="." instance=ExtResource("2_bo1nx")]
 map_width = 30
