@@ -35,6 +35,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					return
 				if _map_controller == null:
 					return
+				if not _can_place_turret(mouse_pos, selected_turret):
+					return
 				if not _map_controller.try_purchase_turret(selected_turret):
 					return
 				var turret_scene: PackedScene = turrets[selected_turret]
@@ -51,3 +53,21 @@ func _is_tile_valid(coords: Vector2i) -> bool:
 func set_selected_turret(turret_name: StringName) -> void:
 	if turrets.has(turret_name):
 		selected_turret = turret_name
+
+func _can_place_turret(position: Vector2, turret_type: StringName) -> bool:
+	var parent_node: Node = get_parent()
+	if parent_node == null:
+		return false
+
+	for child in parent_node.get_children():
+		if child is Tower:
+			var existing: Tower = child as Tower
+			if existing.get_turret_type() == turret_type:
+				if existing.is_position_within_range(position):
+					print("No se puede colocar otra torreta %s dentro de su rango existente." % str(turret_type))
+					return false
+			else:
+				if existing.is_position_within_spawn_block(position):
+					print("No se puede colocar una torreta %s dentro del área de %s." % [str(turret_type), str(existing.get_turret_type())])
+					return false
+	return true

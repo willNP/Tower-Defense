@@ -2,7 +2,7 @@ extends Node2D
 class_name Map_1
 
 @export var enemy_spawn_number : int = 10
-@export var starting_gold: int = 100
+@export var starting_gold: int = 10000
 # Enemies
 var enemies = {
 	goblin = preload("res://Scenes/Enemies/goblin.tscn"),
