@@ -4,6 +4,8 @@ class_name Tower
 @export var turretAttributes : Turret_Attributes
 @export var ammo_scene : PackedScene
 @export var area_2d : Area2D
+@export var spawn_block_area: Area2D
+@export var turret_type: StringName = ""
 
 @export_enum("All", "Flying", "Ground") var target_source : String = "All"
 
@@ -12,14 +14,21 @@ class_name Tower
 var hasTarget : bool
 var targetList : Array
 var currentTarget : Character
+var _range_radius: float = 0.0
+var _spawn_block_radius: float = 0.0
 
 func _ready() -> void:
 	attackTimer = Timer.new()
 	attackTimer.timeout.connect(_on_attack_speed_timer_timeout)
 	add_child(attackTimer)
 	attackTimer.wait_time = turretAttributes.attack_speed
-	area_2d.area_entered.connect(_on_range_area_area_entered)
-	area_2d.area_exited.connect(_on_range_area_area_exited)
+	if area_2d:
+		area_2d.area_entered.connect(_on_range_area_area_entered)
+		area_2d.area_exited.connect(_on_range_area_area_exited)
+		_range_radius = _extract_area_radius(area_2d)
+	if spawn_block_area:
+		_spawn_block_radius = _extract_area_radius(spawn_block_area)
+	add_to_group("TOWERS")
 
 func _physics_process(_delta: float) -> void:
 	if hasTarget:
@@ -74,4 +83,28 @@ func disparar() -> void:
 		ammo.attack(currentTarget)
 		get_parent().call_deferred("add_child", ammo)
 
-		
+func get_turret_type() -> StringName:
+	return turret_type
+
+func is_position_within_range(world_position: Vector2) -> bool:
+	if _range_radius <= 0.0:
+		return false
+	var center: Vector2 = area_2d.global_position if area_2d else global_position
+	return center.distance_to(world_position) <= _range_radius
+
+func is_position_within_spawn_block(world_position: Vector2) -> bool:
+	if spawn_block_area == null or _spawn_block_radius <= 0.0:
+		return false
+	var center: Vector2 = spawn_block_area.global_position
+	return center.distance_to(world_position) <= _spawn_block_radius
+
+func _extract_area_radius(area: Area2D) -> float:
+	for child in area.get_children():
+		if child is CollisionShape2D:
+			var shape: Shape2D = (child as CollisionShape2D).shape
+			if shape is CircleShape2D:
+				var circle: CircleShape2D = shape as CircleShape2D
+				var scale: Vector2 = (child as CollisionShape2D).global_scale
+				var uniform_scale: float = max(abs(scale.x), abs(scale.y))
+				return circle.radius * uniform_scale
+	return 0.0

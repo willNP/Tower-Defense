@@ -14,11 +14,13 @@ metadata/_custom_type_script = "uid://byaut15a6ymo2"
 [sub_resource type="CircleShape2D" id="CircleShape2D_irtp1"]
 radius = 395.01138
 
-[node name="Crossbow" type="Node2D" node_paths=PackedStringArray("area_2d")]
+[node name="Crossbow" type="Node2D" node_paths=PackedStringArray("area_2d", "spawn_block_area")]
 script = ExtResource("1_s8xoi")
 turretAttributes = SubResource("Resource_pmw17")
 ammo_scene = ExtResource("3_pmw17")
 area_2d = NodePath("Area2D")
+spawn_block_area = NodePath("AreaGenericaSpawn")
+turret_type = "crossbow"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964
@@ -27,4 +29,10 @@ texture = ExtResource("3_s8xoi")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_irtp1")
+
+[node name="AreaGenericaSpawn" type="Area2D" parent="."]
+scale = Vector2(0.3, 0.3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaGenericaSpawn"]
 shape = SubResource("CircleShape2D_irtp1")

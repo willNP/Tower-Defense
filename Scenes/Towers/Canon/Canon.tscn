@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dywvj6bqfx2xw"]
+[gd_scene load_steps=8 format=3 uid="uid://dywvj6bqfx2xw"]
 
 [ext_resource type="Script" uid="uid://wx5qj1w45qiu" path="res://Scripts/Towers/tower.gd" id="1_1t4vo"]
 [ext_resource type="Texture2D" uid="uid://mclxncj6q1tb" path="res://Resources/Images/Towers/Cannon/cannon.png" id="2_q68aw"]
@@ -14,11 +14,16 @@ metadata/_custom_type_script = "uid://byaut15a6ymo2"
 [sub_resource type="CircleShape2D" id="CircleShape2D_q68aw"]
 radius = 203.0394
 
-[node name="Canon" type="Node2D" node_paths=PackedStringArray("area_2d")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_1t4vo"]
+radius = 395.01138
+
+[node name="Canon" type="Node2D" node_paths=PackedStringArray("area_2d", "spawn_block_area")]
 script = ExtResource("1_1t4vo")
 turretAttributes = SubResource("Resource_1t4vo")
 ammo_scene = ExtResource("3_1t4vo")
 area_2d = NodePath("Area2D")
+spawn_block_area = NodePath("AreaGenericaSpawn")
+turret_type = "cannon"
 target_source = "Ground"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -29,3 +34,9 @@ texture = ExtResource("2_q68aw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_q68aw")
+
+[node name="AreaGenericaSpawn" type="Area2D" parent="."]
+scale = Vector2(0.3, 0.3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaGenericaSpawn"]
+shape = SubResource("CircleShape2D_1t4vo")
