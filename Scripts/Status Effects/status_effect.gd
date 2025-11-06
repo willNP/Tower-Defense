@@ -1,46 +1,41 @@
-extends Resource
+extends Node2D
 class_name Status_Effect_Resource
 
-@export var status_name : String
-@export var status_duration : float
-@export var proc_every : int = 1 # Seconds
-@export var shader : Shader
+var status_name : String
+var status_duration : float
+var proc_every : int = 1 # Seconds
+var shader : Shader
 
+var character : Character
 var proc_count : int = 0
-var init : bool = false
-#@export_group("Health")
-#@export var health_modifier : float
-#@export var armor_modifier : float
-#@export var magic_resistance_modifier : float
-#@export var poison_resistance_modifier : float
-#@export var fire_resistance_modifier : float
-#@export var stun_resistance_modifier : float
-#@export var slow_resistance_modifier : float
-#
-#@export_group("Movement")
-#@export var movement_modifier : float
-#@export var stop_movement : bool = false
-
 var timer : Timer
 
 func init_timer() -> void:
 	if not timer:
 		print("entra al timer")
 		timer = Timer.new()
-		timer.timeout.connect(timer_timeout)
+		timer.timeout.connect(self.timer_timeout)
 		timer.autostart = false
 		timer.one_shot = true
+		add_child(timer)
 	
-
-func notify_effect(character: Character) -> void:
+func set_character(_character : Character) -> void:
+	character = _character
 	init_timer()
-	# Crear un ShaderMaterial con el shader del recurso
 	var mat := ShaderMaterial.new()
 	mat.shader = shader
 	mat.set_shader_parameter("time", status_duration)
 	character.sprite.material = mat
+	print(character.sprite.material)
 	character.add_status_effect(self)
-	init = true
+	print("character set en el status effect")
+
+func start_timer() -> void:
+	if not timer:
+		print("timer no inicializado")
+	else:
+		timer.start(proc_every)	
 	
 func timer_timeout():
-	pass
+	print("timer timeout")
+	

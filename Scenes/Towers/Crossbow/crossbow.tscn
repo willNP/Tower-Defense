@@ -20,6 +20,7 @@ turretAttributes = SubResource("Resource_pmw17")
 ammo_scene = ExtResource("3_pmw17")
 area_2d = NodePath("Area2D")
 spawn_block_area = NodePath("AreaGenericaSpawn")
+poison_prob = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964

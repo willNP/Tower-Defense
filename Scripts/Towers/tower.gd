@@ -8,8 +8,19 @@ class_name Tower
 @export var turret_type: StringName = ""
 
 @export_enum("All", "Flying", "Ground") var target_source : String = "All"
-
 @onready var attackTimer : Timer
+
+@export_group("Status Effect Probabilities")
+@export var poison_prob : int
+@export var fire_prob : int
+@export var stun_prob : int
+@export var slow_prob : int
+
+var status_effects : Dictionary = {
+	poison = preload("res://Scripts/Status Effects/poison_effect.gd")
+}
+
+
 
 var hasTarget : bool
 var targetList : Array
@@ -18,10 +29,7 @@ var _range_radius: float = 0.0
 var _spawn_block_radius: float = 0.0
 
 func _ready() -> void:
-	attackTimer = Timer.new()
-	attackTimer.timeout.connect(_on_attack_speed_timer_timeout)
-	add_child(attackTimer)
-	attackTimer.wait_time = turretAttributes.attack_speed
+	init_attackTimer()
 	if area_2d:
 		area_2d.area_entered.connect(_on_range_area_area_entered)
 		area_2d.area_exited.connect(_on_range_area_area_exited)
@@ -30,6 +38,13 @@ func _ready() -> void:
 		_spawn_block_radius = _extract_area_radius(spawn_block_area)
 	add_to_group("TOWERS")
 
+
+func init_attackTimer() -> void:
+	attackTimer = Timer.new()
+	attackTimer.timeout.connect(_on_attack_speed_timer_timeout)
+	add_child(attackTimer)
+	attackTimer.wait_time = turretAttributes.attack_speed
+	
 func _physics_process(_delta: float) -> void:
 	if hasTarget:
 		if attackTimer.is_stopped():
@@ -78,10 +93,13 @@ func _on_attack_speed_timer_timeout() -> void:
 
 func disparar() -> void:
 	if hasTarget:
-		var ammo = ammo_scene.instantiate()
+		var ammo : Ammo = ammo_scene.instantiate()
 		ammo.global_position = global_position  # desde el centro de la ballesta
 		ammo.attack(currentTarget)
 		get_parent().call_deferred("add_child", ammo)
+		var effect = calculate_ammo_effect()
+		if effect:
+			ammo.effect = effect
 
 func get_turret_type() -> StringName:
 	return turret_type
@@ -104,7 +122,22 @@ func _extract_area_radius(area: Area2D) -> float:
 			var shape: Shape2D = (child as CollisionShape2D).shape
 			if shape is CircleShape2D:
 				var circle: CircleShape2D = shape as CircleShape2D
-				var scale: Vector2 = (child as CollisionShape2D).global_scale
-				var uniform_scale: float = max(abs(scale.x), abs(scale.y))
+				var _scale: Vector2 = (child as CollisionShape2D).global_scale
+				var uniform_scale: float = max(abs(_scale.x), abs(_scale.y))
 				return circle.radius * uniform_scale
 	return 0.0
+	
+func calculate_ammo_effect() -> Status_Effect_Resource:
+	if poison_prob > 0:
+		var randomNumber = randi() % 100
+		if randomNumber <= poison_prob:
+			var poison_instance : Poison_Effect = status_effects.poison.new()
+			return poison_instance
+			
+	if fire_prob > 0:
+		pass
+	if slow_prob > 0:
+		pass
+	if stun_prob > 0:
+		pass
+	return null
