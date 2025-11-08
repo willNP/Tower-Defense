@@ -17,7 +17,8 @@ class_name Tower
 @export var slow_prob : int
 
 var status_effects : Dictionary = {
-	poison = preload("res://Scripts/Status Effects/poison_effect.gd")
+	poison = preload("res://Scripts/Status Effects/poison_effect.gd"),
+	fire = preload("res://Scripts/Status Effects/fire_effect.gd")
 }
 
 
@@ -133,6 +134,12 @@ func calculate_ammo_effect() -> Status_Effect_Resource:
 		if randomNumber <= poison_prob:
 			var poison_instance : Poison_Effect = status_effects.poison.new()
 			return poison_instance
+	if fire_prob > 0:
+		var randomNumber = randi() % 100
+		if randomNumber <= fire_prob:
+			var fire_instance : Fire_Effect = status_effects.fire.new()
+			return fire_instance
+		
 			
 	if fire_prob > 0:
 		pass

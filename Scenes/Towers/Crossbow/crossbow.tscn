@@ -7,7 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_pmw17"]
 script = ExtResource("2_gywgm")
-attack_speed = 6.0
+attack_speed = 3.0
 crit_chance = 10.0
 metadata/_custom_type_script = "uid://byaut15a6ymo2"
 
@@ -20,7 +20,7 @@ turretAttributes = SubResource("Resource_pmw17")
 ammo_scene = ExtResource("3_pmw17")
 area_2d = NodePath("Area2D")
 spawn_block_area = NodePath("AreaGenericaSpawn")
-poison_prob = 100
+fire_prob = 100
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 1.5707964
